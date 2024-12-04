@@ -10,5 +10,6 @@ public class Main {
         locationLists.parseAndSortInput();
 
         System.out.println(locationLists.calculateTotalDistance());
+        System.out.println(locationLists.calculateSimilarityScore());
     }
 }

@@ -3,10 +3,8 @@ package com.jpark0224.adventofcode.Day1;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class LocationLists {
     private final List<Integer> leftList;
@@ -39,5 +37,24 @@ public class LocationLists {
             totalDistance += Math.abs(leftList.get(i) - rightList.get(i));
         }
         return totalDistance;
+    }
+
+    public int calculateSimilarityScore() {
+        int similarityScore = 0;
+        Map<Integer, Integer> countMap = new HashMap<>();
+
+        for (Integer leftLocation:leftList) {
+            for (Integer rightLocation:rightList) {
+                if (Objects.equals(leftLocation, rightLocation)) {
+                    countMap.put(leftLocation, countMap.getOrDefault(leftLocation, 0) + 1);
+                }
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry:countMap.entrySet()) {
+            similarityScore += entry.getKey() * entry.getValue();
+        }
+
+        return similarityScore;
     }
 }
