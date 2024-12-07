@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Reports reports = new Reports();
         reports.parseInput();
-        System.out.println(reports.calculateTotalSafeReports());
+        System.out.println("Part 1: " + reports.calculateTotalSafeReports());
+        System.out.println("Part 2: " + reports.calculateTotalSafeReportsWithProblemDampener());
     }
 }
