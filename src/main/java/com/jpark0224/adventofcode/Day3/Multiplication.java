@@ -6,18 +6,19 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Multiplication {
-    private List<List<String>> instructions;
+    private List<String> instructions;
 
     public Multiplication() {
         this.instructions = new ArrayList<>();
     }
     
-    public List<List<String>> getInstructions() {
+    public List<String> getInstructions() {
         return this.instructions;
     }
 
@@ -37,10 +38,29 @@ public class Multiplication {
             instructions = stream.map(line -> useRegex(line)
                     // Collect into a list
                     .collect(Collectors.toList()))
+                    .flatMap(List::stream)
                     // Collect all lists into a nested list
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // Part 1
+    public int multiplyAndAdd() {
+        String regex = "\\d+";
+        Pattern pattern = Pattern.compile(regex);
+        int sum = 0;
+
+        for (String instructions:instructions) {
+            int result = 1;
+            Matcher matcher = pattern.matcher(instructions);
+            while (matcher.find()) {
+             result *= Integer.parseInt(matcher.group());
+            }
+            sum += result;
+        }
+
+        return sum;
     }
 }

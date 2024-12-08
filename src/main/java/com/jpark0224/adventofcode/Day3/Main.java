@@ -11,5 +11,6 @@ public class Main {
         Multiplication instructions = new Multiplication();
         instructions.parseInput();
         System.out.println(instructions.getInstructions());
+        System.out.println(instructions.multiplyAndAdd());
     }
 }
