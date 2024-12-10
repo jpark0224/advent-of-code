@@ -14,8 +14,7 @@ import java.util.stream.Stream;
 
 public class Multiplication {
     private List<String> instructions;
-    private List<Integer> validIndices;
-    private List<String> filteredInstructions;
+    private final List<String> filteredInstructions;
 
     public Multiplication() {
         this.instructions = new ArrayList<>();
@@ -24,10 +23,6 @@ public class Multiplication {
     
     public List<String> getInstructions() {
         return this.instructions;
-    }
-
-    public List<String> getFilteredInstructions() {
-        return this.filteredInstructions;
     }
 
     public Stream<String> useRegexPart1(final String input) {
@@ -136,8 +131,6 @@ public class Multiplication {
                 filteredInstructions.add(instructions.get(i));
             }
         }
-
-
 
         return filteredInstructions;
     }
